@@ -111,7 +111,64 @@
             text-decoration: none;
         }
         .btn-detail:hover { background-color: #1a434e; }
+        /* --- CSS TRANG SẢN PHẨM --- */
+            .page-title {
+            text-align: center;
+            color: #2b6777;
+            font-size: 36px;
+            margin: 60px 0 40px;
+            text-transform: uppercase;
+         }
 
+        /* Lưới 3 cột cho Tai nghe IEM */
+        .grid-3 {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 0 50px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .grid-3 .product-item {
+            width: 30%;
+            text-align: center;
+        }
+        .grid-3 img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Cắt ảnh thành hình vuông */
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        /* Lưới 4 cột cho Loa và Headphone */
+        .grid-4 {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 50px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .grid-4 .product-item {
+            width: 23%;
+        }
+
+        /* Khung đứt nét cho các sản phẩm chưa có ảnh */
+        .placeholder-box {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border: 2px dashed #ccc;
+            background-color: #fafafa;
+            margin-bottom: 15px;
+        }
+        
+        /* Tên sản phẩm */
+        .product-name {
+            color: #2b6777;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
