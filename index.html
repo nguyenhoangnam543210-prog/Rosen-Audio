@@ -14,21 +14,29 @@
             color: #333;
         }
 
-        /* --- HEADER TRONG SUỐT NẰM TRÊN BANNER --- */
+        /* --- HEADER BÁM DÍNH & ĐỔI MÀU KHI CUỘN --- */
         header {
-            position: absolute; /* Đẩy menu nổi lên trên */
+            position: fixed; /* Đổi thành fixed để menu chạy theo khi cuộn chuột */
             top: 0;
             left: 0;
             width: 100%;
-            background-color: transparent; /* Nền trong suốt */
+            background-color: transparent; /* Ban đầu trong suốt */
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
-            box-sizing: border-box; /* Chống tràn viền ngang */
-            z-index: 100; /* Đảm bảo menu luôn nằm trên cùng */
+            padding: 25px 50px;
+            box-sizing: border-box; 
+            z-index: 1000; /* Nổi lên trên cùng */
+            transition: all 0.4s ease; /* Hiệu ứng chuyển màu mượt mà */
         }
+        /* Class này sẽ được JS tự động thêm vào khi Nem cuộn chuột xuống */
+        header.scrolled {
+            background-color: #1a1a1a; /* Màu đen khi cuộn */
+            padding: 15px 50px; /* Hơi thu nhỏ lại một chút cho thanh thoát */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Thêm viền bóng */
+        }
+        
         .logo { font-size: 28px; font-weight: bold; letter-spacing: 2px; }
         
         /* Hiệu ứng đường viền khi Hover menu */
@@ -37,51 +45,48 @@
             text-decoration: none;
             margin-left: 25px;
             font-size: 15px;
-            padding-bottom: 5px; /* Tạo khoảng cách cho đường viền */
-            border-bottom: 2px solid transparent; /* Mặc định viền ẩn */
-            transition: all 0.3s ease; /* Hiệu ứng mượt mà */
-            text-transform: uppercase; /* Viết hoa cho sang */
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent; 
+            transition: all 0.3s ease; 
+            text-transform: uppercase; 
         }
         nav a:hover {
             color: white;
-            border-bottom: 2px solid white; /* Hiện viền trắng khi chuột đưa vào */
+            border-bottom: 2px solid white; 
         }
 
-        /* --- BANNER TRÀN FULL MÀN HÌNH --- */
+        /* --- BANNER TRÀN FULL MÀN HÌNH CHỨA VIDEO --- */
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh; /* 100vh = 100% chiều cao màn hình hiện tại */
-            overflow: hidden;
-            display: flex; /* Dùng flexbox để căn giữa chữ tuyệt đối */
+            height: 100vh; /* Tràn viền 100% màn hình */
+            display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
         .back-video {
             position: absolute;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Phóng to video không bị méo */
             z-index: -1; /* Đẩy video ra sau chữ */
-            object-fit: cover;
-            filter: brightness(0.7); /* Làm tối video một chút để chữ nổi bần bật */
+            filter: brightness(0.5); /* Làm tối video 50% để chữ trắng nổi bật */
         }
 
         /* --- CHỮ ROSEN AUDIO Ở GIỮA --- */
         .hero-text-container {
             text-align: center;
             color: white;
-            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.9); /* Đổ bóng mạnh để chống chìm chữ */
             z-index: 10; 
-            pointer-events: none; /* Tránh lỗi không click được video phía sau (nếu có) */
         }
         .hero-text-container h1 {
-            font-size: 80px; /* Chữ siêu to */
+            font-size: 80px; 
             margin: 0;
             letter-spacing: 8px;
+            text-transform: uppercase;
         }
         .hero-text-container p {
             font-size: 20px;
@@ -355,9 +360,8 @@
     <div class="hero">
         
         <video autoplay loop muted playsinline class="back-video">
-            <source src="media/vid/banner_elixir.webm" type="video/webm">
-            <source src="media/vid/banner_elixir.mp4" type="video/mp4">
-            <img src="https://placehold.co/1500x800/222222/666666?text=▶+VIDEO+BACKGROUND" alt="Video Placeholder">
+            <source src="media/vid/banner_elixir_the_audio.webm" type="video/webm">
+            <source src="media/vid/banner_elixir_the_audio.mp4" type="video/mp4">
         </video>
         
         <div class="hero-text-container">
@@ -483,6 +487,17 @@
                 }
             });
         }
+            // HIỆU ỨNG ĐỔI MÀU THANH MENU KHI CUỘN CHUỘT
+                window.addEventListener('scroll', function() {
+                    let header = document.querySelector('header');
+                    // Nếu cuộn xuống quá 50px thì thêm class 'scrolled' (màu đen)
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        // Nếu ở trên cùng thì xóa class đi (trở lại trong suốt)
+                        header.classList.remove('scrolled');
+                    }
+            });
     </script>
 </body>
 </html>
