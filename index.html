@@ -392,11 +392,20 @@
 
     <h2 class="section-title">Nổi Bật trong 2026</h2>
     <div class="sole-container">
+        
         <div class="sole-row right">
             <div class="product-card">
-                <img src="link_64audio.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+64+Audio'" alt="64 Audio">
+                <div class="image-slider">
+                    <div class="slider-wrapper auto-slider" onscroll="updateDots(this)">
+                        <img src="media/noi_bat_trong_2026/64_audio_tia_fourte_1.jpg" alt="64 Audio 1">
+                        <img src="media/noi_bat_trong_2026/64_audio_tia_fourte_2.jpg" alt="64 Audio 2">
+                        <img src="media/noi_bat_trong_2026/64_audio_tia_fourte_3.jpg" alt="64 Audio 3">
+                        <img src="media/noi_bat_trong_2026/64_audio_tia_fourte_4.jpg" alt="64 Audio 4">
+                        <img src="media/noi_bat_trong_2026/64_audio_tia_fourte_5.jpg" alt="64 Audio 5">
+                    </div>
+                </div>
                 <div class="slider-dots">
-                    <span class="dot"></span><span class="dot active"></span>
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
                 </div>
                 <div class="product-title">64 Audio tia Fourté</div>
                 <div class="product-sub">Universal IEM</div>
@@ -404,17 +413,30 @@
                 <a href="#" class="btn-detail">Chi Tiết</a>
             </div>
         </div>
+
         <div class="sole-row left">
             <div class="product-card">
-                <img src="link_campfire.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+Campfire'" alt="Campfire">
-                <div class="slider-dots">
-                    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot active"></span>
+                <div class="image-slider">
+                    <div class="slider-wrapper auto-slider" onscroll="updateDots(this)">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_1.jpg" alt="Sony 1">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_2.jpg" alt="Sony 2">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_3.jpg" alt="Sony 3">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_4.jpg" alt="Sony 4">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_5.jpg" alt="Sony 5">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_6.jpg" alt="Sony 6">
+                        <img src="media/noi_bat_trong_2026/ier_z1r_7.jpg" alt="Sony 7">
+                    </div>
                 </div>
-                <div class="product-title">Campfire Andromeda Emerald</div>
-                <div class="product-title" style="margin-top:-5px;">Sea</div> <div class="product-price">35.000.000đ</div>
+                <div class="slider-dots">
+                    <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                </div>
+                <div class="product-title">Sony IER-Z1R</div>
+                <div class="product-sub">Signature Series IEM</div>
+                <div class="product-price">36.000.000đ</div>
                 <a href="#" class="btn-detail">Chi Tiết</a>
             </div>
         </div>
+
     </div>
     
     <h2 class="section-title">Phân Khúc Cận Cao Cấp</h2>
@@ -472,17 +494,25 @@
         </div>
     </div>
 <script>
+        // 1. HIỆU ỨNG ĐỔI MÀU THANH MENU KHI CUỘN CHUỘT
+        window.addEventListener('scroll', function() {
+            let header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 2. XỬ LÝ DẤU CHẤM CỦA SLIDER KHI TRƯỢT
         function updateDots(sliderWrapper) {
-            // Tính toán xem ảnh số mấy đang hiển thị trên khung hình
             let scrollLeft = sliderWrapper.scrollLeft;
             let slideWidth = sliderWrapper.offsetWidth;
             let activeIndex = Math.round(scrollLeft / slideWidth);
 
-            // Tìm cụm dots của chính sản phẩm đó
             let productCard = sliderWrapper.closest('.product-card');
             let dots = productCard.querySelectorAll('.dot');
 
-            // Cập nhật màu sắc dấu chấm
             dots.forEach((dot, index) => {
                 if (index === activeIndex) {
                     dot.classList.add('active');
@@ -491,17 +521,44 @@
                 }
             });
         }
-            // HIỆU ỨNG ĐỔI MÀU THANH MENU KHI CUỘN CHUỘT
-                window.addEventListener('scroll', function() {
-                    let header = document.querySelector('header');
-                    // Nếu cuộn xuống quá 50px thì thêm class 'scrolled' (màu đen)
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        // Nếu ở trên cùng thì xóa class đi (trở lại trong suốt)
-                        header.classList.remove('scrolled');
-                    }
+
+        // 3. TỰ ĐỘNG CHẠY SLIDER ẢNH KHI IDLE
+        document.addEventListener("DOMContentLoaded", function() {
+            // Tìm tất cả các slider có class auto-slider
+            const autoSliders = document.querySelectorAll('.auto-slider');
+            
+            autoSliders.forEach(slider => {
+                let autoPlayInterval;
+                
+                const startAutoPlay = () => {
+                    // Cứ 3 giây (3000ms) sẽ chuyển ảnh 1 lần
+                    autoPlayInterval = setInterval(() => {
+                        let maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+                        // Nếu lướt tới ảnh cuối cùng thì quay ngược lại ảnh đầu
+                        if (slider.scrollLeft >= maxScrollLeft - 10) { 
+                            slider.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+                        }
+                    }, 3000); 
+                };
+
+                const stopAutoPlay = () => {
+                    clearInterval(autoPlayInterval);
+                };
+
+                // Kích hoạt chạy tự động
+                startAutoPlay();
+
+                // Ngừng chạy tự động khi khách hàng đưa chuột vào hoặc chạm tay vào (trên điện thoại) để tự vuốt
+                slider.addEventListener('mouseenter', stopAutoPlay);
+                slider.addEventListener('touchstart', stopAutoPlay);
+
+                // Khách hàng buông tay/chuột ra thì tiếp tục tự động chạy
+                slider.addEventListener('mouseleave', startAutoPlay);
+                slider.addEventListener('touchend', startAutoPlay);
             });
+        });
     </script>
 </body>
 </html>
