@@ -148,7 +148,79 @@
             font-size: 14px;
         }
         .btn-detail:hover { background-color: #1a434e; }
+        /* --- MENU DROPDOWN CẬP NHẬT --- */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .dropdown > a {
+            margin-left: 0;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #222;
+            min-width: 250px;
+            max-height: 280px; /* Giới hạn chiều cao */
+            overflow-y: auto;  /* Tự động hiện thanh cuộn nếu danh sách dài */
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            padding: 10px 0;
+            border-radius: 4px;
+        }
+        /* Làm đẹp thanh cuộn cho nhỏ gọn */
+        .dropdown-content::-webkit-scrollbar {
+            width: 6px; /* Nút cuộn nhỏ xíu */
+        }
+        .dropdown-content::-webkit-scrollbar-track {
+            background: #222; 
+        }
+        .dropdown-content::-webkit-scrollbar-thumb {
+            background: #666; 
+            border-radius: 10px;
+        }
+        .dropdown-content::-webkit-scrollbar-thumb:hover {
+            background: #2b6777; 
+        }
 
+        /* Nút mũi tên xổ xuống bên trái */
+        .dropdown-content details {
+            margin: 0;
+        }
+        .dropdown-content summary {
+            color: white;
+            padding: 12px 20px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: bold;
+            outline: none;
+        }
+        .dropdown-content summary:hover {
+            background-color: #333;
+        }
+        
+        /* Các sản phẩm con bên trong (được thụt lề) */
+        .dropdown-content details a {
+            color: #ccc;
+            padding: 10px 20px 10px 40px; 
+            text-decoration: none;
+            display: block;
+            margin: 0;
+            font-size: 13px;
+            background-color: #1a1a1a; 
+        }
+        .dropdown-content details a:hover {
+            background-color: #444;
+            color: white;
+        }
+        
+        /* Hiển thị menu khi rê chuột */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }     
     </style>
 </head>
 <body>
@@ -157,7 +229,34 @@
         <div class="logo">Rosen audio</div>
         <nav>
             <a href="#">Trang chủ</a>
-            <a href="#">Sản Phẩm ˅</a>
+            
+            <div class="dropdown">
+                <a href="#">Sản Phẩm ˅</a>
+                <div class="dropdown-content">
+                    
+                    <details open> <summary>TAI NGHE IEM</summary>
+                        <a href="#">Tai nghe 1</a>
+                        <a href="#">Tai nghe 2</a>
+                        <a href="#">Tai nghe 3</a>
+                    </details>
+
+                    <details>
+                        <summary>LOA-SPEAKERS</summary>
+                        <a href="#">Loa 1</a>
+                        <a href="#">Loa 2</a>
+                        <a href="#">Loa 3</a>
+                    </details>
+
+                    <details>
+                        <summary>HEADPHONES</summary>
+                        <a href="#">Headphones 1</a>
+                        <a href="#">Headphones 2</a>
+                        <a href="#">Headphones 3</a>
+                    </details>
+
+                </div>
+            </div>
+
             <a href="#">Liên Hệ</a>
             <a href="#">Về Chúng tôi</a>
             <a href="#">Dịch vụ CSKH</a>
