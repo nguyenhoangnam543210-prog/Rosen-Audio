@@ -10,7 +10,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #ffffff; /* Sửa lại nền trắng cho giống ảnh */
             color: #333;
         }
 
@@ -32,29 +32,27 @@
         }
         nav a:hover { color: white; }
 
-        /* Hero Banner */
+        /* Hero Video Placeholder */
         .hero {
-            /* Thay link ảnh nền thật của Nem vào url() bên dưới */
-            background-image: url('https://via.placeholder.com/1500x600/333333/ffffff?text=Background+Hero+Rosen+Audio'); 
-            background-size: cover;
-            background-position: center;
+            background-color: #e0e0e0;
             height: 500px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
-            text-align: center;
+            overflow: hidden;
         }
-        .hero h1 { font-size: 60px; margin: 0; }
-        .hero p { font-size: 18px; letter-spacing: 2px; }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         /* Tiêu đề Section */
         .section-title {
             text-align: center;
             color: #2b6777;
             font-size: 32px;
-            margin: 50px 0 30px 0;
+            margin: 50px 0 40px 0;
         }
 
         /* Danh mục (3 cột) */
@@ -76,7 +74,7 @@
             margin-bottom: 15px;
         }
 
-        /* Lưới Sản phẩm (3 cột) */
+        /* Lưới Sản phẩm - Bỏ viền, bỏ bóng đổ */
         .product-grid {
             display: flex;
             justify-content: center;
@@ -85,90 +83,72 @@
             flex-wrap: wrap;
         }
         .product-card {
-            background: white;
+            background: transparent;
             width: 300px;
             text-align: center;
             padding-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
         .product-card img {
             width: 100%;
             height: 250px;
             object-fit: contain;
         }
-        .product-title { font-size: 18px; font-weight: bold; margin: 15px 0 5px; }
-        .product-sub { color: #666; font-size: 14px; margin-bottom: 15px; }
-        .product-price { color: #d9534f; font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        
+        /* Dấu chấm dưới ảnh (Dots) */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 10px 0 15px 0;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+        .dot.active {
+            background-color: #2b6777;
+        }
+
+        /* Bố cục So le (Zig-zag) cho phần Nổi bật */
+        .sole-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+        }
+        .sole-row {
+            display: flex;
+            width: 100%;
+        }
+        .sole-row.right {
+            justify-content: flex-end; /* Ép sản phẩm sang phải */
+        }
+        .sole-row.left {
+            justify-content: flex-start; /* Ép sản phẩm sang trái */
+        }
+
+        /* Text sản phẩm */
+        .product-title { font-size: 18px; font-weight: bold; margin: 5px 0; color: #333; }
+        .product-sub { color: #333; font-size: 16px; margin-bottom: 15px; font-weight: bold;}
+        .product-price { color: #ff0000; font-size: 18px; margin-bottom: 15px; }
         
         /* Nút bấm */
         .btn-detail {
             background-color: #2b6777;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 25px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 2px;
             text-decoration: none;
+            font-size: 14px;
         }
         .btn-detail:hover { background-color: #1a434e; }
-        /* --- CSS TRANG SẢN PHẨM --- */
-            .page-title {
-            text-align: center;
-            color: #2b6777;
-            font-size: 36px;
-            margin: 60px 0 40px;
-            text-transform: uppercase;
-         }
 
-        /* Lưới 3 cột cho Tai nghe IEM */
-        .grid-3 {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 0 50px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .grid-3 .product-item {
-            width: 30%;
-            text-align: center;
-        }
-        .grid-3 img {
-            width: 100%;
-            aspect-ratio: 1 / 1; /* Cắt ảnh thành hình vuông */
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        /* Lưới 4 cột cho Loa và Headphone */
-        .grid-4 {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 0 50px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .grid-4 .product-item {
-            width: 23%;
-        }
-
-        /* Khung đứt nét cho các sản phẩm chưa có ảnh */
-        .placeholder-box {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            border: 2px dashed #ccc;
-            background-color: #fafafa;
-            margin-bottom: 15px;
-        }
-        
-        /* Tên sản phẩm */
-        .product-name {
-            color: #2b6777;
-            font-size: 18px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
@@ -186,58 +166,78 @@
     </header>
 
     <div class="hero">
-        <h1>Rosen Audio</h1>
-        <p>Thế giới tai nghe high-end</p>
+        <img src="link_video_that_cua_ban.mp4" 
+             onerror="this.onerror=null; this.src='https://placehold.co/1500x500/cccccc/666666?text=▶+VIDEO+ĐANG+CẬP+NHẬT'" 
+             alt="Video Header">
     </div>
 
     <div class="categories">
         <div class="category-item">
-            <img src="https://via.placeholder.com/300" alt="IEM">
+            <img src="link_anh_iem.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+IEM'" alt="IEM">
             <div>TAI NGHE IEM</div>
         </div>
         <div class="category-item">
-            <img src="https://via.placeholder.com/300" alt="Loa">
+            <img src="link_anh_loa.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+Loa'" alt="Loa">
             <div>LOA-SPEAKERS</div>
         </div>
         <div class="category-item">
-            <img src="https://via.placeholder.com/300" alt="Headphones">
+            <img src="link_anh_headphone.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+Headphone'" alt="Headphones">
             <div>HEADPHONES</div>
         </div>
     </div>
 
     <h2 class="section-title">Nổi Bật trong 2026</h2>
-    <div class="product-grid">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="64 Audio">
-            <div class="product-title">64 Audio tia Fourté</div>
-            <div class="product-sub">Universal IEM</div>
-            <div class="product-price">69.900.000đ</div>
-            <a href="#" class="btn-detail">Chi Tiết</a>
+    <div class="sole-container">
+        <div class="sole-row right">
+            <div class="product-card">
+                <img src="link_64audio.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+64+Audio'" alt="64 Audio">
+                <div class="slider-dots">
+                    <span class="dot"></span><span class="dot active"></span>
+                </div>
+                <div class="product-title">64 Audio tia Fourté</div>
+                <div class="product-sub">Universal IEM</div>
+                <div class="product-price">69.900.000đ</div>
+                <a href="#" class="btn-detail">Chi Tiết</a>
+            </div>
         </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Campfire">
-            <div class="product-title">Campfire Andromeda Emerald Sea</div>
-            <div class="product-price">35.000.000đ</div>
-            <a href="#" class="btn-detail">Chi Tiết</a>
+        <div class="sole-row left">
+            <div class="product-card">
+                <img src="link_campfire.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+Campfire'" alt="Campfire">
+                <div class="slider-dots">
+                    <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot active"></span>
+                </div>
+                <div class="product-title">Campfire Andromeda Emerald</div>
+                <div class="product-title" style="margin-top:-5px;">Sea</div> <div class="product-price">35.000.000đ</div>
+                <a href="#" class="btn-detail">Chi Tiết</a>
+            </div>
         </div>
     </div>
 
     <h2 class="section-title">Phân Khúc Cận Cao Cấp</h2>
     <div class="product-grid">
         <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="UM">
+            <img src="link_um.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+UM'" alt="UM">
+            <div class="slider-dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot active"></span><span class="dot"></span>
+            </div>
             <div class="product-title">UM Unique Melody Mirage</div>
             <div class="product-price">21.590.000đ</div>
             <a href="#" class="btn-detail">Chi Tiết</a>
         </div>
         <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="IE 900">
+            <img src="link_ie900.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+IE900'" alt="IE 900">
+            <div class="slider-dots">
+                <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
             <div class="product-title">IE 900</div>
             <div class="product-price">31.999.000đ</div>
             <a href="#" class="btn-detail">Chi Tiết</a>
         </div>
         <div class="product-card">
-            <img src="https://via.placeholder.com/300" alt="Vision Ears">
+            <img src="link_vision.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x300/f0f0f0/999?text=Ảnh+Vision'" alt="Vision Ears">
+            <div class="slider-dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot active"></span><span class="dot"></span>
+            </div>
             <div class="product-title">Vision Ears EVE20</div>
             <div class="product-price">37.990.000đ</div>
             <a href="#" class="btn-detail">Chi Tiết</a>
