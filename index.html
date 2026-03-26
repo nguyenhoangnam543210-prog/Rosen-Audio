@@ -148,7 +148,7 @@
             font-size: 14px;
         }
         .btn-detail:hover { background-color: #1a434e; }
-        /* --- MENU DROPDOWN CẬP NHẬT --- */
+        /* --- HIỆU ỨNG MENU MƯỢT MÀ & KHÓA (CHỈ MỞ 1 CÁI) --- */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -162,8 +162,6 @@
             position: absolute;
             background-color: #222;
             min-width: 250px;
-            max-height: 280px; /* Giới hạn chiều cao */
-            overflow-y: auto;  /* Tự động hiện thanh cuộn nếu danh sách dài */
             box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
             z-index: 1;
             top: 100%;
@@ -171,24 +169,17 @@
             padding: 10px 0;
             border-radius: 4px;
         }
-        /* Làm đẹp thanh cuộn cho nhỏ gọn */
-        .dropdown-content::-webkit-scrollbar {
-            width: 6px; /* Nút cuộn nhỏ xíu */
-        }
-        .dropdown-content::-webkit-scrollbar-track {
-            background: #222; 
-        }
-        .dropdown-content::-webkit-scrollbar-thumb {
-            background: #666; 
-            border-radius: 10px;
-        }
-        .dropdown-content::-webkit-scrollbar-thumb:hover {
-            background: #2b6777; 
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
-        /* Nút mũi tên xổ xuống bên trái */
+        /* Nút bấm (Summary) */
         .dropdown-content details {
             margin: 0;
+            border-bottom: 1px solid #333; /* Kẻ vạch phân cách cho sang */
+        }
+        .dropdown-content details:last-child {
+            border-bottom: none;
         }
         .dropdown-content summary {
             color: white;
@@ -201,9 +192,9 @@
         .dropdown-content summary:hover {
             background-color: #333;
         }
-        
-        /* Các sản phẩm con bên trong (được thụt lề) */
-        .dropdown-content details a {
+
+        /* Danh sách sản phẩm con */
+        .details-inner a {
             color: #ccc;
             padding: 10px 20px 10px 40px; 
             text-decoration: none;
@@ -212,14 +203,24 @@
             font-size: 13px;
             background-color: #1a1a1a; 
         }
-        .dropdown-content details a:hover {
+        .details-inner a:hover {
             background-color: #444;
             color: white;
         }
-        
-        /* Hiển thị menu khi rê chuột */
-        .dropdown:hover .dropdown-content {
-            display: block;
+
+        /* HIỆU ỨNG TRƯỢT MƯỢT MÀ KHI MỞ (SMOOTH ANIMATION) */
+        details[open] .details-inner {
+            animation: truotMuotMa 0.3s ease-in-out;
+        }
+        @keyframes truotMuotMa {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }     
     </style>
 </head>
@@ -234,24 +235,31 @@
                 <a href="#">Sản Phẩm ˅</a>
                 <div class="dropdown-content">
                     
-                    <details open> <summary>TAI NGHE IEM</summary>
-                        <a href="#">Tai nghe 1</a>
-                        <a href="#">Tai nghe 2</a>
-                        <a href="#">Tai nghe 3</a>
+                    <details name="menu-sp">
+                        <summary>TAI NGHE IEM</summary>
+                        <div class="details-inner">
+                            <a href="#">Tai nghe 1</a>
+                            <a href="#">Tai nghe 2</a>
+                            <a href="#">Tai nghe 3</a>
+                        </div>
                     </details>
 
-                    <details>
+                    <details name="menu-sp">
                         <summary>LOA-SPEAKERS</summary>
-                        <a href="#">Loa 1</a>
-                        <a href="#">Loa 2</a>
-                        <a href="#">Loa 3</a>
+                        <div class="details-inner">
+                            <a href="#">Loa 1</a>
+                            <a href="#">Loa 2</a>
+                            <a href="#">Loa 3</a>
+                        </div>
                     </details>
 
-                    <details>
+                    <details name="menu-sp">
                         <summary>HEADPHONES</summary>
-                        <a href="#">Headphones 1</a>
-                        <a href="#">Headphones 2</a>
-                        <a href="#">Headphones 3</a>
+                        <div class="details-inner">
+                            <a href="#">Headphones 1</a>
+                            <a href="#">Headphones 2</a>
+                            <a href="#">Headphones 3</a>
+                        </div>
                     </details>
 
                 </div>
